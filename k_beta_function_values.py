@@ -37,7 +37,7 @@ with WolframLanguageSession(KERNEL_PATH) as session:
 	session.evaluate(wlexpr('next = cantor[s];'))
 	next = session.evaluate(wlexpr('N[next]'))
 
-	session.evaluate('l[k_, x_] := Product[If[((j == k) || (set[[j]] == x)), 1, Abs[(x - set[[j]]) / (set[[k]] - set[[j]])]], {j, 1, 2 ^ s}];')
+	session.evaluate('l[k_,x_] := Product[If[(j==k),1,Abs[(x-set[[j]]) /(set[[k]]-set[[j]])]],{j, 1, 2^s}];')
 
 	max_values = session.evaluate(wlexpr('Table[Max[Table[N[l[k, next[[i]]]], {i, 1, 2 ^ (s + 1)}]], {k, 1, 2 ^ s}]'))
 
